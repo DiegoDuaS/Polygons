@@ -31,11 +31,22 @@ fn main() -> io::Result<()> {
         Vector3::new(193.0, 383.0, 0.0),
     ];
 
+    let points2 = vec![
+        Vector3::new(321.0, 335.0, 0.0),
+        Vector3::new(288.0, 286.0, 0.0),
+        Vector3::new(339.0, 251.0, 0.0),
+        Vector3::new(374.0, 302.0, 0.0),
+    ];
+
     framebuffer.set_current_color(0xFFFFFF00);
     framebuffer.fill_polygon(&points1, 0xFFFFFF00);
 
-    framebuffer.set_current_color(0xFFFFFFFF);  
-    framebuffer.draw_polygon(&points1);
+    framebuffer.set_current_color(0xFF0000FF);
+    framebuffer.fill_polygon(&points2, 0xFF0000FF);
+
+    framebuffer.set_current_color(0xFFFFFFFF); 
+    framebuffer.draw_polygon(&points1); 
+    framebuffer.draw_polygon(&points2);
 
     // Guardar como archivo BMP
     let filename = "poligonos.bmp";
