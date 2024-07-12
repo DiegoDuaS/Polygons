@@ -55,9 +55,9 @@ fn write_bmp_header(writer: &mut BufWriter<File>, width: u32, height: u32) -> io
 }
 
 fn write_pixel_data(writer: &mut BufWriter<File>, width: u32, height: u32, data: &[u32]) -> io::Result<()> {
-    for y in (0..height).rev() {
+    for y in 0..height {
         for x in 0..width {
-            let index = (y * width + x) as usize;
+            let index = ((height - 1 - y) * width + x) as usize;  // Calcula el índice inverso
             let pixel = data[index];
 
             let b = (pixel & 0xFF) as u8;
@@ -65,7 +65,7 @@ fn write_pixel_data(writer: &mut BufWriter<File>, width: u32, height: u32, data:
             let r = ((pixel >> 16) & 0xFF) as u8;
             let a = ((pixel >> 24) & 0xFF) as u8;
 
-            // Escribir píxel en orden RGBA (32 bits por píxel)
+            // Escribir píxel en orden BGRA (32 bits por píxel)
             writer.write_all(&[b, g, r, a])?;
         }
     }

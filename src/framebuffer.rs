@@ -46,4 +46,16 @@ impl Framebuffer {
     pub fn set_current_color(&mut self, color: u32) {
         self.current_color = color;
     }
+
+    pub fn flip_vertical(&mut self) {
+        let mut temp_buffer = self.buffer.clone(); // Clonamos el buffer actual
+
+        for y in 0..self.height {
+            for x in 0..self.width {
+                let index = y * self.width + x;
+                let flipped_index = ((self.height - 1 - y) * self.width + x);
+                self.buffer[index] = temp_buffer[flipped_index];
+            }
+        }
+    }
 }
