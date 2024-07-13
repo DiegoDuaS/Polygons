@@ -41,7 +41,7 @@ fn main() -> io::Result<()> {
     let points3 = vec![
         Vector3::new(377.0, 249.0, 0.0),
         Vector3::new(411.0, 197.0, 0.0),
-        Vector3::new(339.0, 251.0, 0.0),
+        Vector3::new(436.0, 249.0, 0.0),
     ];
 
     let points4 = vec![
